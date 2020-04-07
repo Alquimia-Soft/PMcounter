@@ -6,7 +6,7 @@ defmodule PMCounter.Counter do
   import Ecto.Query, warn: false
   alias PMCounter.Repo
 
-  alias PMCounter.Counter.Installatio
+  alias PMCounter.Counter.Installation
 
   @doc """
   Returns the list of installations.
@@ -14,91 +14,91 @@ defmodule PMCounter.Counter do
   ## Examples
 
       iex> list_installations()
-      [%Installatio{}, ...]
+      [%Installation{}, ...]
 
   """
   def list_installations do
-    Repo.all(Installatio)
+    Repo.all(Installation)
   end
 
   @doc """
-  Gets a single installatio.
+  Gets a single installation.
 
-  Raises `Ecto.NoResultsError` if the Installatio does not exist.
+  Raises `Ecto.NoResultsError` if the Installation does not exist.
 
   ## Examples
 
-      iex> get_installatio!(123)
-      %Installatio{}
+      iex> get_installation!(123)
+      %Installation{}
 
-      iex> get_installatio!(456)
+      iex> get_installation!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_installatio!(id), do: Repo.get!(Installatio, id)
+  def get_installatio!(id), do: Repo.get!(Installation, id)
 
   @doc """
-  Creates a installatio.
+  Creates a installation.
 
   ## Examples
 
-      iex> create_installatio(%{field: value})
-      {:ok, %Installatio{}}
+      iex> create_installation(%{field: value})
+      {:ok, %Installation{}}
 
-      iex> create_installatio(%{field: bad_value})
+      iex> create_installation(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_installatio(attrs \\ %{}) do
-    %Installatio{}
-    |> Installatio.changeset(attrs)
+  def create_installation(attrs \\ %{}) do
+    %Installation{}
+    |> Installation.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a installatio.
+  Updates a installation.
 
   ## Examples
 
-      iex> update_installatio(installatio, %{field: new_value})
-      {:ok, %Installatio{}}
+      iex> update_installation(installation, %{field: new_value})
+      {:ok, %Installation{}}
 
-      iex> update_installatio(installatio, %{field: bad_value})
+      iex> update_installation(installation, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_installatio(%Installatio{} = installatio, attrs) do
-    installatio
-    |> Installatio.changeset(attrs)
+  def update_installation(%Installation{} = installation, attrs) do
+    installation
+    |> Installation.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a installatio.
+  Deletes a installation.
 
   ## Examples
 
-      iex> delete_installatio(installatio)
-      {:ok, %Installatio{}}
+      iex> delete_installation(installation)
+      {:ok, %Installation{}}
 
-      iex> delete_installatio(installatio)
+      iex> delete_installation(installation)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_installatio(%Installatio{} = installatio) do
-    Repo.delete(installatio)
+  def delete_installation(%Installation{} = installation) do
+    Repo.delete(installation)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking installatio changes.
+  Returns an `%Ecto.Changeset{}` for tracking installation changes.
 
   ## Examples
 
-      iex> change_installatio(installatio)
-      %Ecto.Changeset{source: %Installatio{}}
+      iex> change_installation(installation)
+      %Ecto.Changeset{source: %Installation{}}
 
   """
-  def change_installatio(%Installatio{} = installatio) do
-    Installatio.changeset(installatio, %{})
+  def change_installation(%Installation{} = installation) do
+    Installation.changeset(installation, %{})
   end
 end

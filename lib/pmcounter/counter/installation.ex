@@ -1,4 +1,4 @@
-defmodule PMCounter.Counter.Installatio do
+defmodule PMCounter.Counter.Installation do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,8 +10,8 @@ defmodule PMCounter.Counter.Installatio do
   end
 
   @doc false
-  def changeset(installatio, attrs) do
-    installatio
+  def changeset(installation, attrs) do
+    installation
     |> cast(attrs, [])
     |> validate_required([])
   end
