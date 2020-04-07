@@ -14,28 +14,33 @@ defmodule PMCounter.Counter do
   ## Examples
 
       iex> list_installations()
-      [%Installation{}, ...]
+      0
 
   """
-  def list_installations do
-    Repo.all(Installation)
+  def count_installations do
+    from(
+      i in Installation,
+      select: count(i.id)
+    )
+    |>Repo.one!()
+    # Repo.all(Installation)
   end
 
-  @doc """
-  Gets a single installation.
+  # @doc """
+  # Gets a single installation.
 
-  Raises `Ecto.NoResultsError` if the Installation does not exist.
+  # Raises `Ecto.NoResultsError` if the Installation does not exist.
 
-  ## Examples
+  # ## Examples
 
-      iex> get_installation!(123)
-      %Installation{}
+  #     iex> get_installation!(123)
+  #     %Installation{}
 
-      iex> get_installation!(456)
-      ** (Ecto.NoResultsError)
+  #     iex> get_installation!(456)
+  #     ** (Ecto.NoResultsError)
 
-  """
-  def get_installatio!(id), do: Repo.get!(Installation, id)
+  # """
+  # def get_installation!(id), do: Repo.get!(Installation, id)
 
   @doc """
   Creates a installation.
@@ -55,39 +60,39 @@ defmodule PMCounter.Counter do
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a installation.
+  # @doc """
+  # Updates a installation.
 
-  ## Examples
+  # ## Examples
 
-      iex> update_installation(installation, %{field: new_value})
-      {:ok, %Installation{}}
+  #     iex> update_installation(installation, %{field: new_value})
+  #     {:ok, %Installation{}}
 
-      iex> update_installation(installation, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  #     iex> update_installation(installation, %{field: bad_value})
+  #     {:error, %Ecto.Changeset{}}
 
-  """
-  def update_installation(%Installation{} = installation, attrs) do
-    installation
-    |> Installation.changeset(attrs)
-    |> Repo.update()
-  end
+  # """
+  # def update_installation(%Installation{} = installation, attrs) do
+  #   installation
+  #   |> Installation.changeset(attrs)
+  #   |> Repo.update()
+  # end
 
-  @doc """
-  Deletes a installation.
+  # @doc """
+  # Deletes a installation.
 
-  ## Examples
+  # ## Examples
 
-      iex> delete_installation(installation)
-      {:ok, %Installation{}}
+  #     iex> delete_installation(installation)
+  #     {:ok, %Installation{}}
 
-      iex> delete_installation(installation)
-      {:error, %Ecto.Changeset{}}
+  #     iex> delete_installation(installation)
+  #     {:error, %Ecto.Changeset{}}
 
-  """
-  def delete_installation(%Installation{} = installation) do
-    Repo.delete(installation)
-  end
+  # """
+  # def delete_installation(%Installation{} = installation) do
+  #   Repo.delete(installation)
+  # end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking installation changes.

@@ -19,45 +19,55 @@ defmodule PMCounter.CounterTest do
       installation
     end
 
-    test "list_installations/0 returns all installations" do
-      installation = installation_fixture()
-      assert Counter.list_installations() == [installation]
-    end
+    # test "list_installations/0 returns all installations" do
+    #   installation = installation_fixture()
+    #   assert Counter.list_installations() == [installation]
+    # end
 
-    test "get_installation!/1 returns the installation with given id" do
-      installation = installation_fixture()
-      assert Counter.get_installation!(installation.id) == installation
+    # test "get_installation!/1 returns the installation with given id" do
+    #   installation = installation_fixture()
+    #   assert Counter.get_installation!(installation.id) == installation
+    # end
+
+    test "count_installations/0 counts the number of installations" do
+      assert 0 == Counter.count_installations()
+      Counter.create_installation()
+      assert 1 == Counter.count_installations()
+      Counter.create_installation()
+      assert 2 == Counter.count_installations()
+      Counter.create_installation()
+      assert 3 == Counter.count_installations()
     end
 
     test "create_installation/1 with valid data creates a installation" do
       assert {:ok, %Installation{} = installation} = Counter.create_installation(@valid_attrs)
     end
 
-    test "create_installation/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Counter.create_installation(@invalid_attrs)
-    end
+    # test "create_installation/1 with invalid data returns error changeset" do
+    #   assert {:error, %Ecto.Changeset{}} = Counter.create_installation(@invalid_attrs)
+    # end
 
-    test "update_installation/2 with valid data updates the installation" do
-      installation = installation_fixture()
+    # test "update_installation/2 with valid data updates the installation" do
+    #   installation = installation_fixture()
 
-      assert {:ok, %Installation{} = installation} =
-               Counter.update_installation(installation, @update_attrs)
-    end
+    #   assert {:ok, %Installation{} = installation} =
+    #            Counter.update_installation(installation, @update_attrs)
+    # end
 
-    test "update_installation/2 with invalid data returns error changeset" do
-      installation = installation_fixture()
+    # test "update_installation/2 with invalid data returns error changeset" do
+    #   installation = installation_fixture()
 
-      assert {:error, %Ecto.Changeset{}} =
-               Counter.update_installation(installation, @invalid_attrs)
+    #   assert {:error, %Ecto.Changeset{}} =
+    #            Counter.update_installation(installation, @invalid_attrs)
 
-      assert installation == Counter.get_installation!(installation.id)
-    end
+    #   assert installation == Counter.get_installation!(installation.id)
+    # end
 
-    test "delete_installation/1 deletes the installation" do
-      installation = installation_fixture()
-      assert {:ok, %Installation{}} = Counter.delete_installation(installation)
-      assert_raise Ecto.NoResultsError, fn -> Counter.get_installation!(installation.id) end
-    end
+    # test "delete_installation/1 deletes the installation" do
+    #   installation = installation_fixture()
+    #   assert {:ok, %Installation{}} = Counter.delete_installation(installation)
+    #   assert_raise Ecto.NoResultsError, fn -> Counter.get_installation!(installation.id) end
+    # end
 
     test "change_installation/1 returns a installation changeset" do
       installation = installation_fixture()
