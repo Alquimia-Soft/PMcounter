@@ -5,6 +5,7 @@ defmodule PMCounter.Counter.Installation do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "installations" do
+    field :version, :string
 
     timestamps()
   end
@@ -12,7 +13,8 @@ defmodule PMCounter.Counter.Installation do
   @doc false
   def changeset(installation, attrs) do
     installation
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:version])
+    |> validate_required([:version])
+    |> validate_format(:version, ~r/^v\d+\.\d+\.\d+$/)
   end
 end

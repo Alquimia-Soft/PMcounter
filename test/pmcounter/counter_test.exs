@@ -6,9 +6,9 @@ defmodule PMCounter.CounterTest do
   describe "installations" do
     alias PMCounter.Counter.Installation
 
-    @valid_attrs %{}
-    @update_attrs %{}
-    @invalid_attrs %{}
+    @valid_attrs %{version: "v0.7.10"}
+    @update_attrs %{version: "v1.30.2"}
+    @invalid_attrs %{version: "1.2.0"}
 
     def installation_fixture(attrs \\ %{}) do
       {:ok, installation} =
@@ -30,22 +30,24 @@ defmodule PMCounter.CounterTest do
     # end
 
     test "count_installations/0 counts the number of installations" do
-      assert 0 == Counter.count_installations()
-      Counter.create_installation()
-      assert 1 == Counter.count_installations()
-      Counter.create_installation()
-      assert 2 == Counter.count_installations()
-      Counter.create_installation()
-      assert 3 == Counter.count_installations()
+      assert %{} == Counter.count_installations()
+      installation_fixture(%{version: "v1.9.1"})
+      assert %{"v1.9.1" => 1} == Counter.count_installations()
+      installation_fixture(%{version: "v1.9.1"})
+      assert %{"v1.9.1" => 2} == Counter.count_installations()
+      installation_fixture(%{version: "v1.9.2"})
+      assert %{"v1.9.1" => 2, "v1.9.2" => 1} == Counter.count_installations()
+      installation_fixture(%{version: "v1.9.2"})
+      assert %{"v1.9.1" => 2, "v1.9.2" => 2} == Counter.count_installations()
     end
 
     test "create_installation/1 with valid data creates a installation" do
       assert {:ok, %Installation{} = installation} = Counter.create_installation(@valid_attrs)
     end
 
-    # test "create_installation/1 with invalid data returns error changeset" do
-    #   assert {:error, %Ecto.Changeset{}} = Counter.create_installation(@invalid_attrs)
-    # end
+    test "create_installation/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Counter.create_installation(@invalid_attrs)
+    end
 
     # test "update_installation/2 with valid data updates the installation" do
     #   installation = installation_fixture()

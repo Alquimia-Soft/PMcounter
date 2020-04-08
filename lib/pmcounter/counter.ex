@@ -20,9 +20,11 @@ defmodule PMCounter.Counter do
   def count_installations do
     from(
       i in Installation,
-      select: count(i.id)
+      group_by: i.version,
+      select: {i.version, count(i.id)}
     )
-    |>Repo.one!()
+    |>Repo.all()
+    |>Enum.into(%{})
     # Repo.all(Installation)
   end
 

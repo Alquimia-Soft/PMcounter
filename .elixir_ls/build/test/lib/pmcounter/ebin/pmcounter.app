@@ -10,6 +10,8 @@
                         'Elixir.PMCounterWeb',
                         'Elixir.PMCounterWeb.ChannelCase',
                         'Elixir.PMCounterWeb.ConnCase',
+                        'Elixir.PMCounterWeb.CountController',
+                        'Elixir.PMCounterWeb.CountView',
                         'Elixir.PMCounterWeb.Endpoint',
                         'Elixir.PMCounterWeb.ErrorHelpers',
                         'Elixir.PMCounterWeb.ErrorView',
@@ -17,5 +19,5 @@
                         'Elixir.PMCounterWeb.Router.Helpers',
                         'Elixir.PMCounterWeb.UserSocket']},
               {registered,[]},
-              {vsn,"0.1.0"},
+              {vsn,"0.2.1"},
               {mod,{'Elixir.PMCounter.Application',[]}}]}.

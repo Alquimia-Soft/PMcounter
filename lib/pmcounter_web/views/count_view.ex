@@ -5,6 +5,9 @@ defmodule PMCounterWeb.CountView do
     %{messaje: "ok"}
   end
   def render("count.json", %{installations: installations}) do
-    %{total: installations}
+    installations
+  end
+  def render("error.json", %{error: error}) do
+    %{error: translate_error(error)}
   end
 end
