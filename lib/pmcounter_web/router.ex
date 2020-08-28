@@ -10,5 +10,7 @@ defmodule PMCounterWeb.Router do
 
     post "/count", CountController, :count
     get "/count", CountController, :get_count
+
+    post "/register", RegisterController, :register
   end
 end

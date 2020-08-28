@@ -23,8 +23,9 @@ defmodule PMCounter.Counter do
       group_by: i.version,
       select: {i.version, count(i.id)}
     )
-    |>Repo.all()
-    |>Enum.into(%{})
+    |> Repo.all()
+    |> Enum.into(%{})
+
     # Repo.all(Installation)
   end
 
