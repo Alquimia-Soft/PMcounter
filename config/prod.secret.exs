@@ -10,16 +10,16 @@ use Mix.Config
 
 
 
-secret_key_base =
-  System.get_env("SECRET_KEY_BASE") ||
-    "x81AJvMeu9wWFhiH5Jwm5hDQfUHxxDYGXPCy8LDvjfpejjWzk43ZbkKdKGiHrz4m"
+#secret_key_base =
+#  System.get_env("SECRET_KEY_BASE") ||
+#    "x81AJvMeu9wWFhiH5Jwm5hDQfUHxxDYGXPCy8LDvjfpejjWzk43ZbkKdKGiHrz4m"
 
-config :pmcounter, PMCounterWeb.Endpoint,
-  http: [
-    port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
-  ],
-  secret_key_base: secret_key_base
+#config :pmcounter, PMCounterWeb.Endpoint,
+#  http: [
+#    port: String.to_integer(System.get_env("PORT") || "4000"),
+#    transport_options: [socket_opts: [:inet6]]
+#  ],
+#  secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
 #
@@ -30,3 +30,32 @@ config :pmcounter, PMCounterWeb.Endpoint,
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
+# database_url =
+#   System.get_env("DATABASE_URL") ||
+#     raise """
+#     environment variable DATABASE_URL is missing.
+#     For example: ecto://USER:PASS@HOST/DATABASE
+#     """
+
+config :pmcounter, PMCounter.Repo,
+  username: System.get_env("DATABASE_USER"),
+  password: System.get_env("DATABASE_PASS"),
+  database: System.get_env("DATABASE_NAME"),
+  hostname: System.get_env("DATABASE_HOST"),
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  database_url: System.get_env("DATABASE_URL")
+
+# secret_key_base =
+#   System.get_env("SECRET_KEY_BASE") ||
+#     raise """
+#     environment variable SECRET_KEY_BASE is missing.
+#     You can generate one by calling: mix phx.gen.secret
+#     """
+
+# Comment out secret_key_base, we've added it to prod.exs:
+config :pmcounter, PMCounterWeb.Endpoint,
+  http: [
+    port: String.to_integer(System.get_env("PORT") || "4000"),
+    transport_options: [socket_opts: [:inet6]]
+  ],
+  secret_key_base: System.get_env("SECRET_KEY_BASE")

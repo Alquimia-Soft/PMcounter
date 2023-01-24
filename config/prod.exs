@@ -51,13 +51,13 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
-config :pmcounter, PMCounter.Repo,
-  # ssl: true,
-  username: "postgres",
-  password: "postgres",
-  database: "pmcounter_prod",
-  hostname: "localhost",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+#config :pmcounter, PMCounter.Repo,
+#  # ssl: true,
+#  username: "postgres",
+#  password: "postgres",
+#  database: "pmcounter_prod",
+#  hostname: "localhost",
+#  show_sensitive_data_on_connection_error: true,
+#  pool_size: 10
 
 import_config "prod.secret.exs"
